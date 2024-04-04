@@ -13,8 +13,3 @@ export async function handleVerifyMetaMask(req: Request, res: ExpressResponse) {
     ResponseManager.handleError(res, err);
   }
 }
-
-export async function handleCreateDonation(
-  req: Request,
-  res: ExpressResponse
-) {}
