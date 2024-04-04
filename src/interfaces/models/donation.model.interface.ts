@@ -1,4 +1,5 @@
 import { BaseModel } from "./base.model";
+import { DonationStatus } from "../../models/donation.models";
 
 export interface Donation extends BaseModel {
   name: string;
@@ -6,6 +7,7 @@ export interface Donation extends BaseModel {
   wallet: string;
   target: number;
   raised: number;
+  status: DonationStatus;
 }
 
 export interface Transaction extends BaseModel {

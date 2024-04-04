@@ -29,6 +29,94 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
 
+  /donations/create:
+    parameters:
+      - $ref: "#/components/parameters/AuthToken"
+    post:
+      summary: create a donation
+      tags:
+        - donation
+      operationId: createDonation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDonationRequest"
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Donation"
+        401:
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /donations:
+    get:
+      summary: view all donations
+      tags:
+        - donation
+      operationId: getAllDonations
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Donation"
+
+  /donation/{donationId}:
+    parameters:
+      - $ref: "#/components/parameters/DonationParam"
+    get:
+      summary: get a single donation
+      tags:
+        - donation
+      operationId: getSingleDonation
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Donation"
+        404:
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /donations/me:
+    parameters:
+      - $ref: "#/components/parameters/AuthToken"
+    get:
+      summary: get all user donations
+      tags:
+        - donation
+      operationId: getUserDonations
+      responses:
+        200:
+          description: succcess
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Donation"
+
+
+
+
+
+
+
 
 
 components:
@@ -36,6 +124,12 @@ components:
     AuthToken:
       name: x-auth-token
       in: header
+      schema:
+        type: string
+      required: true
+    DonationParam:
+      name: donationId
+      in: path
       schema:
         type: string
       required: true
@@ -71,6 +165,19 @@ components:
         address:
           type: string
 
+    CreateDonationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        target:
+          type: number
+        raised:
+          type: number
+
+
 
   ##----- RESPONSE ------##
     AuthResponse:
@@ -88,3 +195,17 @@ components:
           type: string
         walletAddress:
           type: string
+
+    Donation:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        wallet:
+          type: string
+        target:
+          type: number
+        raised:
+          type: number

@@ -19,3 +19,15 @@ export async function handleCreateDonation(
     ResponseManager.handleError(res, err);
   }
 }
+
+export async function handleGetAllDonations(
+  req: IExpressRequest,
+  res: ExpressResponse
+): Promise<void> {
+  try {
+    const donations = await donationService.getAllDonations();
+    ResponseManager.success(res, { donations });
+  } catch (err: any) {
+    ResponseManager.handleError(res, err);
+  }
+}

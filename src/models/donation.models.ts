@@ -4,6 +4,10 @@ import { config } from "../constants/settings";
 import { v4 as uuidv4 } from "uuid";
 import { Donation } from "../interfaces";
 
+export enum DonationStatus {
+  ONGOING = "ongoing",
+  COMPLETED = "completed",
+}
 const donationSchema = new Schema<Donation>(
   {
     _id: {
@@ -31,6 +35,10 @@ const donationSchema = new Schema<Donation>(
     raised: {
       type: Number,
       required: true,
+    },
+    status: {
+      type: String,
+      enum: DonationStatus,
     },
   },
   {

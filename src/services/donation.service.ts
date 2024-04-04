@@ -14,3 +14,7 @@ export async function createDonation(body: CreateDonation): Promise<Donation> {
 
   return donation;
 }
+
+export async function getAllDonations(): Promise<Donation[]> {
+  return await DonationDb.find({});
+}
