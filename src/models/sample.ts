@@ -32,4 +32,4 @@ const sampleSchema = new Schema({
       timestamps: true, versionKey: false
 })
 
-export const UserDb = mongoose.model(config.mongodb.collections.sample,sampleSchema)
+// export const UserDb = mongoose.model(config.mongodb.collections.sample,sampleSchema)

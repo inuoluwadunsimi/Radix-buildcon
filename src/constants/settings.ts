@@ -10,7 +10,8 @@ export const config = {
     mongodb: {
       uri: <string>process.env.MONGODB_URI,
       collections: {
-       sample:'sample-collection'
+       sample:'sample-collection',
+          user:"users",
       }
     },
     google: {
