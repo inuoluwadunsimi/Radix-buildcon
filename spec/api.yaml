@@ -103,7 +103,7 @@ paths:
       operationId: getUserDonations
       responses:
         200:
-          description: succcess
+          description: success
           content:
             application/json:
               schema:

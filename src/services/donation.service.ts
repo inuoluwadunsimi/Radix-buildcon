@@ -1,4 +1,9 @@
-import { CreateDonation, Donation } from "../interfaces";
+import {
+  BadRequestError,
+  CreateDonation,
+  Donation,
+  NotFoundError,
+} from "../interfaces";
 import { DonationDb } from "../models/donation.models";
 
 export async function createDonation(body: CreateDonation): Promise<Donation> {
@@ -18,3 +23,17 @@ export async function createDonation(body: CreateDonation): Promise<Donation> {
 export async function getAllDonations(): Promise<Donation[]> {
   return await DonationDb.find({});
 }
+
+export async function getAllUserDonations(wallet: string): Promise<Donation[]> {
+  return await DonationDb.find({ wallet });
+}
+
+export async function getSingleDonation(donationId: string): Promise<Donation> {
+  const donation = await DonationDb.findOne<Donation>({ _id: donationId });
+  if (!donation) {
+    throw new NotFoundError("donation not found");
+  }
+  return donation;
+}
+
+export async function getDonors(donationId: string): Promise<> {}
