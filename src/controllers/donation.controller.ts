@@ -61,3 +61,16 @@ export async function handleGetSingleDonation(
     ResponseManager.handleError(res, err);
   }
 }
+
+export async function handleDonorsList(
+  req: IExpressRequest,
+  res: ExpressResponse
+): Promise<void> {
+  const { donationId } = req.params;
+  try {
+    const donors = await donationService.getDonors(donationId);
+    ResponseManager.success(res, { donors });
+  } catch (err: any) {
+    ResponseManager.handleError(res, err);
+  }
+}

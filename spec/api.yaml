@@ -111,6 +111,24 @@ paths:
                 items:
                   $ref: "#/components/schemas/Donation"
 
+  /donations/donors/:donationId:
+    parameters:
+      - $ref: "#/components/parameters/DonationParam"
+    get:
+      summary: get donors
+      tags:
+        - donation
+      operationId: getDonors
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Transaction"
+
 
 
 
@@ -195,6 +213,22 @@ components:
           type: string
         walletAddress:
           type: string
+
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+        donorAddress:
+          type: string
+        transactionHash:
+          type: string
+        donation:
+          type: string
+          format: uuid
+        amount:
+          type: number
+
 
     Donation:
       type: object

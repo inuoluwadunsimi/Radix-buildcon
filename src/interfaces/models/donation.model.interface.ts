@@ -14,4 +14,5 @@ export interface Transaction extends BaseModel {
   donorAddress: string;
   transactionHash: string;
   donation: string;
+  amount: number;
 }

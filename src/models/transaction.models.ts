@@ -25,6 +25,10 @@ const transactionSchema = new Schema<Transaction>(
       required: true,
       ref: config.mongodb.collections.donation,
     },
+    amount: {
+      type: Number,
+      required: true,
+    },
   },
   {
     toObject: {

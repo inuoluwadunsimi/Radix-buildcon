@@ -1,6 +1,7 @@
 import express from "express";
 import {
   handleCreateDonation,
+  handleDonorsList,
   handleGetAllDonations,
   handleGetSingleDonation,
   handleGetUserDonations,
@@ -24,5 +25,7 @@ donationRoutes.get(
   jwtHelper.requirePermission(),
   handleGetUserDonations
 );
+
+donationRoutes.get("/donors/:donationId", handleDonorsList);
 
 export default donationRoutes;
