@@ -1,0 +1,90 @@
+openapi: 3.0.0
+info:
+  title:  Radix
+  version: 1.0.0
+  description: Radix donation app API docs
+paths:
+  /auth/verify-wallet:
+    post:
+      summary: verify wallet address
+      tags:
+        - authentication
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerifyWalletRequest"
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        400:
+          description: errors
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+
+
+components:
+  parameters:
+    AuthToken:
+      name: x-auth-token
+      in: header
+      schema:
+        type: string
+      required: true
+  schemas:
+    DefaultResponse:
+      title: DefaultResponse
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
+
+    ErrorResponse:
+      title: DefaultResponse
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      required:
+        - message
+
+    ##== REQUESTS ====##
+    VerifyWalletRequest:
+      type: object
+      properties:
+        message:
+          type: string
+        signature:
+          type: string
+        address:
+          type: string
+
+
+  ##----- RESPONSE ------##
+    AuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        user:
+          $ref: "#/components/schemas/AuthResponse"
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        walletAddress:
+          type: string

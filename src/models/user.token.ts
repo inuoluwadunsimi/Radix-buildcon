@@ -2,9 +2,9 @@ import * as mongoose from "mongoose";
 import { Schema } from "mongoose";
 import { config } from "../constants/settings";
 import { v4 as uuidv4 } from "uuid";
-import { User } from "../interfaces";
+import { UserToken } from "../interfaces";
 
-const userSchema = new Schema<User>(
+const userToken = new Schema<UserToken>(
   {
     _id: {
       type: String,
@@ -12,11 +12,15 @@ const userSchema = new Schema<User>(
         return uuidv4();
       },
     },
-    walletAddress: {
+
+    token: { type: String, required: true },
+    user: {
       type: String,
       required: true,
+      ref: config.mongodb.collections.user,
     },
   },
+
   {
     toObject: {
       transform(doc, ret) {
@@ -37,7 +41,7 @@ const userSchema = new Schema<User>(
   }
 );
 
-export const UserDb = mongoose.model(
-  config.mongodb.collections.user,
-  userSchema
+export const UserTokenDb = mongoose.model(
+  config.mongodb.collections.user_tokens,
+  userToken
 );
