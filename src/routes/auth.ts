@@ -1,9 +1,8 @@
 import express from "express";
-import {handleVerifyMetaMask} from "../controllers/auth.controller";
+import { handleVerifyMetaMask } from "../controllers";
 
-const authRoutes = express.Router()
+const authRoutes = express.Router();
 
+authRoutes.post("/verify-wallet", handleVerifyMetaMask);
 
-authRoutes.post('/verify-wallet', handleVerifyMetaMask)
-
-export default authRoutes
+export default authRoutes;

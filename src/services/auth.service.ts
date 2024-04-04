@@ -1,4 +1,8 @@
-import { BadRequestError, verifyAddressRequest } from "../interfaces";
+import {
+  AuthResponse,
+  BadRequestError,
+  verifyAddressRequest,
+} from "../interfaces";
 import Web3 from "web3";
 import { UserDb, UserTokenDb } from "../models";
 import { jwtHelper } from "../helpers/jwt/jwt.helper";
@@ -6,7 +10,7 @@ import { jwtHelper } from "../helpers/jwt/jwt.helper";
 const web3 = new Web3();
 export async function verifyMetMask(
   body: verifyAddressRequest
-): Promise<string> {
+): Promise<AuthResponse> {
   const { message, signature, address } = body;
   const prefixedMessage = `\x19Ethereum Signed Message:\n${message.length}${message}`;
   const messageHash = web3.utils.sha3(prefixedMessage);
@@ -33,5 +37,8 @@ export async function verifyMetMask(
     user: user.id,
   });
 
-  return token;
+  return {
+    token,
+    user,
+  };
 }

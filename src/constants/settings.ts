@@ -10,11 +10,11 @@ export const config = {
       sample: "sample-collection",
       user: "users",
       user_tokens: "user_tokens",
+      donation: "donations",
+      transaction: "transactions",
     },
   },
-  google: {
-    clientID: <string>process.env.GOOGLE_CLIENT_ID,
-  },
+
   redis: {
     uri: <string>process.env.REDIS_URI,
   },
