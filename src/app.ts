@@ -8,6 +8,7 @@ import cors from "cors";
 import helmet from "helmet";
 import methodOverride from "method-override";
 import * as swaggerUi from "swagger-ui-express";
+import { listenForPaymentEvents } from "./listeners/smart.contract.listener";
 
 const swaggerSpec = require("./configuration/swagger");
 
@@ -20,6 +21,13 @@ app.set("port", process.env.APP_PORT);
 app.set("env", process.env.NODE_ENV);
 
 app.use(bodyParser.json());
+listenForPaymentEvents()
+  .then(() => {
+    console.log("Listening for payment events...");
+  })
+  .catch((error) => {
+    console.error("Failed to listen for payment events:", error);
+  });
 
 app.use(cookieParser());
 

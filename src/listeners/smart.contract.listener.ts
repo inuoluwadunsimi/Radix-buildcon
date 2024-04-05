@@ -77,9 +77,9 @@ const contract = new web3.eth.Contract(
   config.smartContract.contractAddress
 );
 
-const listenForPaymentEvents = async () => {
+export const listenForPaymentEvents = async () => {
   contract.events
-    .PaymentRecived({ fromBlock: "latest" })
+    .PaymentReceived({ fromBlock: "latest" })
     .on("data", async function (event) {
       const { transactionHash, address } = event;
       const { sender, amount } = event.returnValues;
