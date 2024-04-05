@@ -147,7 +147,7 @@ const contract = new web3.eth.Contract(
 
 export const listenForPaymentEvents = async () => {
   contract.events
-    .PaymentReceived({ fromBlock: "latest" })
+    .TransactionCompleted({ fromBlock: "latest" })
     .on("data", async function (event) {
       const { transactionHash, address } = event;
       const { sender, amount } = event.returnValues;
