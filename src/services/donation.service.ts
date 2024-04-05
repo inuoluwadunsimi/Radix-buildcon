@@ -40,7 +40,14 @@ export async function getSingleDonation(donationId: string): Promise<Donation> {
 }
 
 export async function getDonors(donationId: string): Promise<Transaction[]> {
-  return await TransactionDb.find({ donation: donationId });
+  const donors = await TransactionDb.find({ donation: donationId });
+  const noOfDonations = await await TransactionDb.find({
+    donation: donationId,
+  }).count();
+  return {
+    donors,
+    noOfDonations,
+  };
 }
 
 export async function trackTransaction(body: TrackRequest): Promise<void> {

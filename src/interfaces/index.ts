@@ -6,3 +6,4 @@ export * from "./models/user.model.interfaces";
 export * from "./auth/auth.responses";
 export * from "./models/donation.model.interface";
 export * from "./donation/donation.requests";
+export * from "./donation/donation.responses";
