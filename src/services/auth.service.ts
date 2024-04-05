@@ -7,8 +7,9 @@ import {
 import Web3 from "web3";
 import { UserDb, UserTokenDb } from "../models";
 import { jwtHelper } from "../helpers/jwt/jwt.helper";
+import { config } from "../constants/settings";
 
-const web3 = new Web3();
+const web3 = new Web3(config.smartContract.providerUrl);
 export async function verifyMetMask(
   body: verifyAddressRequest
 ): Promise<AuthResponse> {
@@ -19,6 +20,7 @@ export async function verifyMetMask(
     throw new BadRequestError("invalid message");
   }
   const recoveredAddress = web3.eth.accounts.recover(messageHash, signature);
+  console.log(recoveredAddress);
 
   if (recoveredAddress.toLowerCase() !== address.toLowerCase()) {
     throw new BadRequestError("failed to verify signature");

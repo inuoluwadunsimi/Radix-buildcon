@@ -1,5 +1,5 @@
 import { BaseModel } from "./base.model";
-import { DonationStatus } from "../../models/donation.models";
+import { DonationStatus } from "../../models";
 
 export interface Donation extends BaseModel {
   name: string;
@@ -15,4 +15,9 @@ export interface Transaction extends BaseModel {
   transactionHash: string;
   donation: string;
   amount: number;
+}
+
+export interface Track extends BaseModel {
+  donation: string;
+  transactionHash: string;
 }

@@ -18,7 +18,8 @@ contract FundMe {
       require(msg.value.getConversionRate() >= minimumUsd, "Didn't send enough");
         funders.push(msg.sender);
         addressToAmountFunded[msg.sender] += msg.value;
-    }
+
+}
 
     
 

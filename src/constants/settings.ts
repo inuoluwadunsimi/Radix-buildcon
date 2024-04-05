@@ -15,6 +15,10 @@ export const config = {
       tracks: "tracks",
     },
   },
+  smartContract: {
+    contractAddress: <string>process.env["CONTRACT_ADDRESS"],
+    providerUrl: <string>process.env["PROVIDER_URL"],
+  },
 
   redis: {
     uri: <string>process.env.REDIS_URI,
