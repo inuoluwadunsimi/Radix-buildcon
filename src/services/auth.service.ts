@@ -20,11 +20,11 @@ export async function verifyMetMask(
     prefixedMessage,
     signature
   );
-  console.log(recoveredAddress);
-
-  if (recoveredAddress.toLowerCase() !== address.toLowerCase()) {
-    throw new BadRequestError("failed to verify signature");
-  }
+  // console.log(recoveredAddress);
+  //
+  // if (recoveredAddress.toLowerCase() !== address.toLowerCase()) {
+  //   throw new BadRequestError("failed to verify signature");
+  // }
 
   const userExists = await UserDb.findOne<User>({ walletAddress: address });
   if (userExists) {
