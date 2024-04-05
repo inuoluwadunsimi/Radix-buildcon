@@ -6,8 +6,8 @@ import {
   TrackRequest,
   Transaction,
 } from "../interfaces";
-import { DonationDb } from "../models/donation.models";
-import { TransactionDb } from "../models/transaction.models";
+import { DonationDb } from "../models";
+import { TransactionDb } from "../models";
 import { TrackDb } from "../models";
 
 export async function createDonation(body: CreateDonation): Promise<Donation> {

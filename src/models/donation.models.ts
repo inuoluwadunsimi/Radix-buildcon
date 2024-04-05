@@ -6,7 +6,7 @@ import { Donation } from "../interfaces";
 
 export enum DonationStatus {
   ONGOING = "ongoing",
-  COMPLETED = "completed",
+  CLOSED = "closed",
 }
 const donationSchema = new Schema<Donation>(
   {

@@ -79,12 +79,15 @@ export async function handleDonorsList(
   }
 }
 
-export async function handldeTrack(
+export async function handleTrack(
   req: IExpressRequest,
   res: ExpressResponse
 ): Promise<void> {
   const body: TrackRequest = req.body;
+
   try {
+    await donationService.trackTransaction(body);
+    ResponseManager.success(res, { message: "success" });
   } catch (err: any) {
     ResponseManager.handleError(res, err);
   }

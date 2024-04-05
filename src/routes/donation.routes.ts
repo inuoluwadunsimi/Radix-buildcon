@@ -5,6 +5,7 @@ import {
   handleGetAllDonations,
   handleGetSingleDonation,
   handleGetUserDonations,
+  handleTrack,
 } from "../controllers";
 import { jwtHelper } from "../helpers/jwt/jwt.helper";
 
@@ -27,6 +28,6 @@ donationRoutes.get(
 );
 
 donationRoutes.get("/donors/:donationId", handleDonorsList);
-donationRoutes.post("/track");
+donationRoutes.post("/track", handleTrack);
 
 export default donationRoutes;
