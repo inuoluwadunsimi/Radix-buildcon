@@ -27,5 +27,6 @@ donationRoutes.get(
 );
 
 donationRoutes.get("/donors/:donationId", handleDonorsList);
+donationRoutes.post("/track");
 
 export default donationRoutes;

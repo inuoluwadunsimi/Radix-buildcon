@@ -12,6 +12,7 @@ export const config = {
       user_tokens: "user_tokens",
       donation: "donations",
       transaction: "transactions",
+      tracks: "tracks",
     },
   },
 

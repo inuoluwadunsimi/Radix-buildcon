@@ -3,10 +3,12 @@ import {
   CreateDonation,
   Donation,
   NotFoundError,
+  TrackRequest,
   Transaction,
 } from "../interfaces";
 import { DonationDb } from "../models/donation.models";
 import { TransactionDb } from "../models/transaction.models";
+import { TrackDb } from "../models";
 
 export async function createDonation(body: CreateDonation): Promise<Donation> {
   const { name, description, raised, target } = body.body;
@@ -40,4 +42,8 @@ export async function getSingleDonation(donationId: string): Promise<Donation> {
 
 export async function getDonors(donationId: string): Promise<Transaction[]> {
   return await TransactionDb.find({ donation: donationId });
+}
+
+export async function trackTransaction(body: TrackRequest): Promise<void> {
+  await TrackDb.create(body);
 }

@@ -9,3 +9,8 @@ export interface CreateDonation {
   walletAddress: string;
   body: CreateDonationRequest;
 }
+
+export interface TrackRequest {
+  orderId: string;
+  transactionHash: string;
+}

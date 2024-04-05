@@ -129,6 +129,29 @@ paths:
                 items:
                   $ref: "#/components/schemas/Transaction"
 
+  /donations/track:
+    parameters:
+      - $ref: "#/components/parameters/AuthToken"
+    post:
+      summary: track donations
+      tags:
+        - donation
+      operationId: track donation attempts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TrackDonationRequest"
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultResponse"
+
+
+
 
 
 
@@ -181,6 +204,14 @@ components:
         signature:
           type: string
         address:
+          type: string
+
+    TrackDonationRequest:
+      type: object
+      properties:
+        transactionHash:
+          type: string
+        donationId:
           type: string
 
     CreateDonationRequest:

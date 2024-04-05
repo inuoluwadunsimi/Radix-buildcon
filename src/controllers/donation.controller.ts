@@ -1,4 +1,8 @@
-import { CreateDonationRequest, IExpressRequest } from "../interfaces";
+import {
+  CreateDonationRequest,
+  IExpressRequest,
+  TrackRequest,
+} from "../interfaces";
 import { Response as ExpressResponse } from "express";
 import * as ResponseManager from "../helpers/response.manager";
 import * as donationService from "../services/donation.service";
@@ -70,6 +74,17 @@ export async function handleDonorsList(
   try {
     const donors = await donationService.getDonors(donationId);
     ResponseManager.success(res, { donors });
+  } catch (err: any) {
+    ResponseManager.handleError(res, err);
+  }
+}
+
+export async function handldeTrack(
+  req: IExpressRequest,
+  res: ExpressResponse
+): Promise<void> {
+  const body: TrackRequest = req.body;
+  try {
   } catch (err: any) {
     ResponseManager.handleError(res, err);
   }
