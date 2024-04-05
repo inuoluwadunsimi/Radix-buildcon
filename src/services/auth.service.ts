@@ -19,7 +19,11 @@ export async function verifyMetMask(
   if (!messageHash) {
     throw new BadRequestError("invalid message");
   }
-  const recoveredAddress = web3.eth.accounts.recover(messageHash, signature);
+  console.log(messageHash);
+  const recoveredAddress = web3.eth.accounts.recover(
+    prefixedMessage,
+    signature
+  );
   console.log(recoveredAddress);
 
   if (recoveredAddress.toLowerCase() !== address.toLowerCase()) {
