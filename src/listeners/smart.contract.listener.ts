@@ -6,6 +6,63 @@ import { Track } from "../interfaces";
 const web3 = new Web3(config.smartContract.providerUrl);
 const contractABI = [
   {
+    inputs: [],
+    name: "fund",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  {
+    inputs: [],
+    name: "NotOwner",
+    type: "error",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "sender",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "bytes32",
+        name: "transactionHash",
+        type: "bytes32",
+      },
+    ],
+    name: "TransactionCompleted",
+    type: "event",
+  },
+  {
+    stateMutability: "payable",
+    type: "fallback",
+  },
+  {
+    inputs: [],
+    name: "withdraw",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    stateMutability: "payable",
+    type: "receive",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -22,13 +79,6 @@ const contractABI = [
       },
     ],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "fund",
-    outputs: [],
-    stateMutability: "payable",
     type: "function",
   },
   {
@@ -52,7 +102,7 @@ const contractABI = [
   },
   {
     inputs: [],
-    name: "minimumUsd",
+    name: "getVersion",
     outputs: [
       {
         internalType: "uint256",
@@ -65,13 +115,31 @@ const contractABI = [
   },
   {
     inputs: [],
-    name: "withdraw",
-    outputs: [],
-    stateMutability: "nonpayable",
+    name: "i_owner",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "MINIMUM_USD",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
 ];
-
 const contract = new web3.eth.Contract(
   contractABI,
   config.smartContract.contractAddress
