@@ -58,7 +58,25 @@ paths:
 
   /donations/update:
     parameters:
-      - 
+      -  $ref: "#/components/parameters/AuthToken"
+    post:
+      summary: update the donations mode
+      tags:
+        - donation
+      operationId: updateDonationStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Status'
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Donation"
+
 
 
 
@@ -248,9 +266,15 @@ components:
         raised:
           type: number
 
+    Status:
+      type: string
+      enum:
+        - ongoing
+        - completed
 
 
-  ##----- RESPONSE ------##
+
+        ##----- RESPONSE ------##
     AuthResponse:
       type: object
       properties:
