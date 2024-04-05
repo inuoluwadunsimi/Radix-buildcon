@@ -91,7 +91,6 @@ export class JwtHelper {
         }
 
         const decoded = await this.verifyToken(token);
-        console.log(`the decoded one is ${decoded}`);
 
         req.wallet = decoded.wallet;
         req.userId = decoded.userId;

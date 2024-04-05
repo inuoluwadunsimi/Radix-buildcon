@@ -46,3 +46,5 @@ export async function getDonors(donationId: string): Promise<Transaction[]> {
 export async function trackTransaction(body: TrackRequest): Promise<void> {
   await TrackDb.create(body);
 }
+
+export async function updateDonation(): Promise<void> {}

@@ -13,7 +13,6 @@ export async function handleCreateDonation(
 ): Promise<void> {
   const body: CreateDonationRequest = req.body;
   const walletAddress = req.wallet!;
-  console.log(`wallet${req.wallet}`);
   try {
     const donation = await donationService.createDonation({
       body,
@@ -60,7 +59,7 @@ export async function handleGetSingleDonation(
 
   try {
     const donation = await donationService.getSingleDonation(donationId);
-    ResponseManager.handleError(res, { donation });
+    ResponseManager.success(res, { donation });
   } catch (err: any) {
     ResponseManager.handleError(res, err);
   }
