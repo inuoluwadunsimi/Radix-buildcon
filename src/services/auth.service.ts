@@ -30,7 +30,7 @@ export async function verifyMetMask(
   if (userExists) {
     const token = jwtHelper.generateToken({
       userId: userExists.id,
-      walletAddress: address,
+      wallet: address,
     });
 
     await UserTokenDb.updateOne(
@@ -52,7 +52,7 @@ export async function verifyMetMask(
   });
   const token = jwtHelper.generateToken({
     userId: user.id,
-    walletAddress: address,
+    wallet: address,
   });
 
   await UserTokenDb.create({

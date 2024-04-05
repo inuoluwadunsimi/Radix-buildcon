@@ -11,12 +11,11 @@ import { TransactionDb } from "../models";
 import { TrackDb } from "../models";
 
 export async function createDonation(body: CreateDonation): Promise<Donation> {
-  const { name, description, raised, target } = body.body;
+  const { name, description, target } = body.body;
 
   const donation = await DonationDb.create({
     name,
     description,
-    raised,
     target,
     wallet: body.walletAddress,
   });

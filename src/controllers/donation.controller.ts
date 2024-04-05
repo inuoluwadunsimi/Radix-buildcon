@@ -6,20 +6,20 @@ import {
 import { Response as ExpressResponse } from "express";
 import * as ResponseManager from "../helpers/response.manager";
 import * as donationService from "../services/donation.service";
-import { DonationDb } from "../models/donation.models";
 
 export async function handleCreateDonation(
   req: IExpressRequest,
   res: ExpressResponse
 ): Promise<void> {
   const body: CreateDonationRequest = req.body;
-  const walletAddress = req.wallet;
+  const walletAddress = req.wallet!;
+  console.log(`wallet${req.wallet}`);
   try {
     const donation = await donationService.createDonation({
       body,
       walletAddress: <string>walletAddress,
     });
-    ResponseManager.handleError(res, { donation });
+    ResponseManager.success(res, { donation });
   } catch (err: any) {
     ResponseManager.handleError(res, err);
   }

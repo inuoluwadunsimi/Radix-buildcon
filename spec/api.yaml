@@ -58,7 +58,7 @@ paths:
 
   /donations/update:
     parameters:
-      -  $ref: "#/components/parameters/AuthToken"
+      - $ref: "#/components/parameters/AuthToken"
     post:
       summary: update the donations mode
       tags:

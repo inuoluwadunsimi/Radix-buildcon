@@ -34,7 +34,6 @@ const donationSchema = new Schema<Donation>(
     },
     raised: {
       type: Number,
-      required: true,
     },
     status: {
       type: String,

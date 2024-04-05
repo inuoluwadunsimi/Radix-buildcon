@@ -12,7 +12,7 @@ export interface JwtConfig {
 }
 
 interface GenerateTokenParam {
-  walletAddress: string;
+  wallet: string;
   userId?: string;
   expiresIn?: number;
 }
@@ -44,7 +44,7 @@ export class JwtHelper {
     return jwt.sign(
       {
         userId: body.userId,
-        wallet: body.walletAddress,
+        wallet: body.wallet,
       },
       encryptionKey,
       { expiresIn: "7d" }
@@ -91,9 +91,9 @@ export class JwtHelper {
         }
 
         const decoded = await this.verifyToken(token);
-        console.log(decoded);
+        console.log(`the decoded one is ${decoded}`);
 
-        req.wallet = decoded.walletAddress;
+        req.wallet = decoded.wallet;
         req.userId = decoded.userId;
 
         return next();
