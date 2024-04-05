@@ -1,6 +1,7 @@
 import {
   AuthResponse,
   BadRequestError,
+  User,
   verifyAddressRequest,
 } from "../interfaces";
 import Web3 from "web3";
@@ -23,10 +24,30 @@ export async function verifyMetMask(
     throw new BadRequestError("failed to verify signature");
   }
 
+  const userExists = await UserDb.findOne<User>({ walletAddress: address });
+  if (userExists) {
+    const token = jwtHelper.generateToken({
+      userId: userExists.id,
+      walletAddress: address,
+    });
+
+    await UserTokenDb.updateOne(
+      {
+        user: userExists.id,
+      },
+      { token },
+      { upsert: true }
+    );
+
+    return {
+      token,
+      user: userExists,
+    };
+  }
+
   const user = await UserDb.create({
     walletAddress: address,
   });
-
   const token = jwtHelper.generateToken({
     userId: user.id,
     walletAddress: address,
