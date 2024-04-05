@@ -14,7 +14,8 @@ export async function verifyMetMask(
   body: verifyAddressRequest
 ): Promise<AuthResponse> {
   const { message, signature, address } = body;
-  const prefixedMessage = `\x19Ethereum Signed Message:\n${message.length}${message}`;
+  const messageLengthInBytes = new TextEncoder().encode(message).length;
+  const prefixedMessage = `\x19Ethereum Signed Message:\n${messageLengthInBytes}${message}`;
   const recoveredAddress = web3.eth.accounts.recover(
     prefixedMessage,
     signature
