@@ -56,10 +56,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
 
-  /donations/update:
+  /donations/update/{donationId}:
     parameters:
       - $ref: "#/components/parameters/AuthToken"
-    post:
+    put:
       summary: update the donations mode
       tags:
         - donation

@@ -6,7 +6,7 @@ import {
   TrackRequest,
   Transaction,
 } from "../interfaces";
-import { DonationDb } from "../models";
+import { DonationDb, DonationStatus } from "../models";
 import { TransactionDb } from "../models";
 import { TrackDb } from "../models";
 
@@ -47,4 +47,17 @@ export async function trackTransaction(body: TrackRequest): Promise<void> {
   await TrackDb.create(body);
 }
 
-export async function updateDonation(): Promise<void> {}
+export async function updateDonation(
+  status: DonationStatus,
+  donationId: string
+): Promise<Donation> {
+  const donation = await DonationDb.findOneAndUpdate<Donation>(
+    { _id: donationId },
+    { status },
+    { new: true }
+  );
+  if (!donation) {
+    throw new NotFoundError("error not found");
+  }
+  return donation;
+}

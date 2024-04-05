@@ -6,6 +6,7 @@ import {
   handleGetSingleDonation,
   handleGetUserDonations,
   handleTrack,
+  handleUpdateDonation,
 } from "../controllers";
 import { jwtHelper } from "../helpers/jwt/jwt.helper";
 
@@ -18,16 +19,19 @@ donationRoutes.post(
 );
 
 donationRoutes.get("/", handleGetAllDonations);
-
-donationRoutes.get("/:donationId", handleGetSingleDonation);
-
 donationRoutes.get(
   "/me",
   jwtHelper.requirePermission(),
   handleGetUserDonations
 );
+donationRoutes.get("/:donationId", handleGetSingleDonation);
 
 donationRoutes.get("/donors/:donationId", handleDonorsList);
 donationRoutes.post("/track", handleTrack);
+donationRoutes.put(
+  "/update/:donationId",
+  jwtHelper.requirePermission(),
+  handleUpdateDonation
+);
 
 export default donationRoutes;

@@ -91,3 +91,19 @@ export async function handleTrack(
     ResponseManager.handleError(res, err);
   }
 }
+
+export async function handleUpdateDonation(
+  req: IExpressRequest,
+  res: ExpressResponse
+): Promise<void> {
+  const { status } = req.body;
+  const { donationId } = req.params;
+
+  const donation = await donationService.updateDonation(status, donationId);
+  ResponseManager.success(res, { donation });
+
+  try {
+  } catch (err: any) {
+    ResponseManager.handleError(res, err);
+  }
+}
