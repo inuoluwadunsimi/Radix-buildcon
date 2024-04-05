@@ -111,7 +111,7 @@ paths:
                 items:
                   $ref: "#/components/schemas/Donation"
 
-  /donation/{donationId}:
+  /donations/{donationId}:
     parameters:
       - $ref: "#/components/parameters/DonationParam"
     get:

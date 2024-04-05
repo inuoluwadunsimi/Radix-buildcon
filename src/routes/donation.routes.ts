@@ -9,7 +9,7 @@ import {
 } from "../controllers";
 import { jwtHelper } from "../helpers/jwt/jwt.helper";
 
-const donationRoutes = express.Router();
+const donationRoutes = express.Router({ mergeParams: true });
 
 donationRoutes.post(
   "/create",
@@ -19,7 +19,7 @@ donationRoutes.post(
 
 donationRoutes.get("/", handleGetAllDonations);
 
-donationRoutes.get("/donation/:donationId", handleGetSingleDonation);
+donationRoutes.get("/:donationId", handleGetSingleDonation);
 
 donationRoutes.get(
   "/me",
