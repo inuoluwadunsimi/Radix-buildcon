@@ -14,12 +14,12 @@ export async function verifyMetMask(
   body: verifyAddressRequest
 ): Promise<AuthResponse> {
   const { message, signature, address } = body;
-  const messageLengthInBytes = new TextEncoder().encode(message).length;
-  const prefixedMessage = `\x19Ethereum Signed Message:\n${messageLengthInBytes}${message}`;
+  const prefixedMessage = `\x19Ethereum Signed Message:\n${message.length}${message}`;
   const recoveredAddress = web3.eth.accounts.recover(
     prefixedMessage,
     signature
   );
+  console.log(recoveredAddress);
   // console.log(recoveredAddress);
   //
   // if (recoveredAddress.toLowerCase() !== address.toLowerCase()) {
